@@ -1,20 +1,91 @@
-<<<<<<< HEAD
-# React + Vite
+🧠 Aletheia CEO — Transparent AI Decision Intelligence Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aletheia CEO is an AI-powered virtual executive system designed to simulate strategic decision-making with full transparency, governance, and explainability.
+It enables organizations to evaluate business scenarios, assess risks, and generate auditable decision insights in real time.
 
-Currently, two official plugins are available:
+🚀 Overview
+Modern organizations face increasing complexity in strategic planning.
+Aletheia CEO acts as a digital executive layer that analyzes inputs using AI and governance frameworks to provide structured recommendations and transparency reports.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+✨ Key Features
+🤖 AI-driven decision evaluation
+📊 Scenario and risk analysis
+🛡️ Governance & compliance checks
+📜 Decision Ledger (audit trail)
+📈 Real-time reporting dashboard
+🧩 Modular architecture
+🔍 Explainable decision outputs
+🏗️ System Architecture
 
-## React Compiler
+Frontend Dashboard → API Layer → AI Decision Engine → Governance & Risk Module → Decision Ledger → Database → Reporting Engine
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+🛠️ Tech Stack
+Frontend
+React.js
+CSS / Tailwind
+Component-based architecture
+Application Layer
+Business logic controllers
+API integration
+AI Layer
+LLM APIs
+Decision analysis engine
+Data Layer
+Database (PostgreSQL / MongoDB)
+Decision logging
+Infrastructure
+Cloud deployment
+AMD compute acceleration
 
-## Expanding the ESLint configuration
+📂 Project Structure
+src/
+ ├── components/
+ │   ├── ui/
+ │   ├── DecisionForm.jsx
+ │   ├── ResultsDashboard.jsx
+ │   └── Sidebar.jsx
+ ├── pages/
+ │   ├── DashboardPage.jsx
+ │   ├── EvaluationPage.jsx
+ │   ├── EthicsPage.jsx
+ │   ├── HistoryPage.jsx
+ │   ├── SettingsPage.jsx
+ │   └── StakeholdersPage.jsx
+ ├── lib/
+ │   └── utils.js
+ ├── App.jsx
+ └── main.jsx
+ 
+⚙️ Installation
+git clone https://github.com/yourusername/aletheia-ceo.git
+cd aletheia-ceo
+npm install
+npm run dev
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-=======
-# Aletheia-CEO
->>>>>>> d48f2d30e9914321f3e4a79e552ae26c019764da
+🧪 Usage
+1️⃣ Open the dashboard
+2️⃣ Enter a strategic scenario
+3️⃣ Run evaluation
+4️⃣ Review AI insights and transparency report
+
+🎯 Use Cases
+Strategic planning support
+Risk and governance analysis
+AI decision transparency
+Executive simulation
+Business scenario evaluation
+
+🔮 Future Enhancements
+Real-time collaboration
+Advanced analytics
+Model performance tracking
+Enterprise integrations
+Automated compliance reporting
+
+👥 Contributors
+Tasmiya M — Project Lead
+Alwyn Robinson
+
+
+🌟 Acknowledgements
+Built to explore the future of transparent AI leadership and decision intelligence.
