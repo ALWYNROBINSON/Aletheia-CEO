@@ -103,46 +103,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     async function executeGeminiEvaluation(data) {
-        const apiKey = 'AIzaSyAbbi3pIChhoXWcxYFTIomIIoIWbQIa3Qc'; // Embedded per user instruction
-        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
-
-        let optionsText = data.options.map((opt, i) => `Option ${String.fromCharCode(65 + i)}: ${opt.name} - ${opt.description}`).join('\n');
-
-        const prompt = `You are Aletheia, a Virtual CEO & AI Executive Leadership System.
-Analyze this strategic decision using rigorous governance frameworks (SWOT, PESTLE, ROI, Risk).
-
-Title: ${data.title}
-Objective: ${data.objective}
-Context: ${data.context}
-Constraints: ${data.constraints}
-Options: 
-${optionsText}
-
-Return ONLY a valid JSON object with the exact keys: "ledgerHtml", "boardHtml", "internalHtml", "publicHtml".
-Each key should map to an HTML string. Use styling tags like <strong>, <ul> and <br>. Wrap major sections in <div class="doc-section"><h3>Section Name</h3><div class="doc-content"><p>...</p></div></div>. Use <div class="highlight-box"><h3>Chosen Strategy</h3><p>...</p></div> for the selected path in the ledger. Keep HTML clean.`;
-
         // Advance visuals during fetch
         setTimeout(() => { progressBar.style.width = '30%'; completeStep(1); activateStep(2); }, 800);
         setTimeout(() => { progressBar.style.width = '60%'; completeStep(2); activateStep(3); }, 2000);
         setTimeout(() => { progressBar.style.width = '80%'; completeStep(3); activateStep(4); }, 4000);
 
-        const response = await fetch(url, {
+        const response = await fetch('/api/evaluate', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                contents: [{ parts: [{ text: prompt }] }],
-                generationConfig: {
-                    temperature: 0.2, // Executive deterministic choice
-                    response_mime_type: "application/json"
-                }
-            })
+            body: JSON.stringify(data)
         });
 
         if (!response.ok) throw new Error(`API HTTP error: ${response.status}`);
 
         const resultData = await response.json();
-        const resultText = resultData.candidates[0].content.parts[0].text;
-        const parsedResult = JSON.parse(resultText);
+        const parsedResult = resultData.resultsData || resultData;
+
 
         progressBar.style.width = '95%';
         completeStep(4);

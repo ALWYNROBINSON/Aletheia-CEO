@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Target, FileText, Activity, AlertCircle, Plus, Trash2, Cpu } from 'lucide-react';
 import { cn } from '../lib/utils';
 
-export default function DecisionForm({ onSubmit, loading, progress, activeStep }) {
+export default function DecisionForm({ onSubmit, loading, progress, activeStep, cooldown = 0 }) {
     const [options, setOptions] = useState([
         { id: 1, name: '', description: '' },
         { id: 2, name: '', description: '' }
@@ -231,27 +231,47 @@ export default function DecisionForm({ onSubmit, loading, progress, activeStep }
                     <AlertCircle size={20} className="drop-shadow-[0_0_5px_#FF4DA6]" />
                     <span>Executing this evaluation utilizes live Gemini Foundation Models. Audit logs will be generated.</span>
                 </div>
-                <button
-                    type="submit"
-                    className="w-full md:w-auto bg-gradient-to-r from-[#FF2D8F] to-[#7A5CFF] hover:brightness-125 hover:shadow-[0_0_25px_rgba(255,77,166,0.8)] text-[#EAF0FF] px-10 py-4 rounded-xl font-heading font-bold flex items-center justify-center gap-3 shadow-[0_4px_15px_rgba(255,45,143,0.5)] transition-all uppercase tracking-widest border border-white/10 relative overflow-hidden group"
-                >
-                    <div className="absolute inset-0 w-full h-full bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent)] -translate-x-[150%] skew-x-[-20deg] group-hover:animate-[shimmer_1.5s_infinite]"></div>
-                    <Cpu size={20} />
-                    Initialize Strategic Analysis
-                </button>
+                {cooldown > 0 ? (
+                    <div className="w-full md:w-auto flex flex-col items-center gap-2">
+                        <button
+                            type="button"
+                            disabled
+                            className="w-full md:w-auto bg-[rgba(255,45,143,0.1)] text-[#7A89A6] border border-[#FF2D8F]/20 px-10 py-4 rounded-xl font-heading font-bold flex items-center justify-center gap-3 uppercase tracking-widest cursor-not-allowed"
+                        >
+                            <Cpu size={20} />
+                            Cooldown — {String(Math.floor(cooldown / 60)).padStart(2,'0')}:{String(cooldown % 60).padStart(2,'0')}
+                        </button>
+                        <div className="w-full md:w-64 h-1 bg-[rgba(255,45,143,0.1)] rounded-full overflow-hidden">
+                            <div
+                                className="h-full bg-gradient-to-r from-[#FF2D8F] to-[#7A5CFF] rounded-full transition-all duration-1000"
+                                style={{ width: `${((60 - cooldown) / 60) * 100}%` }}
+                            />
+                        </div>
+                        <p className="text-xs text-[#7A89A6] tracking-widest">API rate limit protection — ready soon</p>
+                    </div>
+                ) : (
+                    <button
+                        type="submit"
+                        className="w-full md:w-auto bg-gradient-to-r from-[#FF2D8F] to-[#7A5CFF] hover:brightness-125 hover:shadow-[0_0_25px_rgba(255,77,166,0.8)] text-[#EAF0FF] px-10 py-4 rounded-xl font-heading font-bold flex items-center justify-center gap-3 shadow-[0_4px_15px_rgba(255,45,143,0.5)] transition-all uppercase tracking-widest border border-white/10 relative overflow-hidden group"
+                    >
+                        <div className="absolute inset-0 w-full h-full bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent)] -translate-x-[150%] skew-x-[-20deg] group-hover:animate-[shimmer_1.5s_infinite]"></div>
+                        <Cpu size={20} />
+                        Initialize Strategic Analysis
+                    </button>
+                )}
             </div>
         </form>
     );
 }
 
 // Inline Loader component for loading state
-function Loader(props) {
+function Loader({ size = 24, ...props }) {
     return (
         <svg
             {...props}
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
+            width={size}
+            height={size}
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"

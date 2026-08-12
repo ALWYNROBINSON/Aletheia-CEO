@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { Settings, Key, Bell, Palette, Shield, Save, User } from 'lucide-react';
+import { Settings, Bell, Palette, Save, User } from 'lucide-react';
 
 export default function SettingsPage({ auth }) {
     const [notifs, setNotifs] = useState({ evaluations: true, board: false, ethics: true });
-    const [model, setModel] = useState('gemini-2.5-flash');
     const [saved, setSaved] = useState(false);
 
     const handleSave = () => {
@@ -41,28 +40,6 @@ export default function SettingsPage({ auth }) {
                 </div>
             </div>
 
-            {/* AI Parameters */}
-            <div className="bg-[#0B0F1A]/80 border border-[#FF2D8F]/15 rounded-2xl p-6">
-                <div className="flex items-center gap-2 mb-5 text-[#FF4DA6]">
-                    <Key size={18} />
-                    <h2 className="font-heading text-sm font-bold uppercase tracking-widest">AI Model Parameters</h2>
-                </div>
-                <div className="space-y-4">
-                    <div className="space-y-2">
-                        <label className="block text-xs font-bold text-[#9AA4C7] uppercase tracking-[0.2em]">Foundation Model</label>
-                        <select value={model} onChange={e => setModel(e.target.value)} className="w-full bg-[#05060A]/80 border border-[#FF2D8F]/20 rounded-xl px-4 py-3 text-[#EAF0FF] focus:outline-none focus:border-[#FF4DA6] transition-all text-sm">
-                            <option value="gemini-2.5-flash">Gemini 2.5 Flash (Recommended)</option>
-                            <option value="gemini-2.5-pro">Gemini 2.5 Pro (High Fidelity)</option>
-                            <option value="gemini-1.5-flash">Gemini 1.5 Flash (Legacy)</option>
-                        </select>
-                    </div>
-                    <div className="space-y-2">
-                        <label className="block text-xs font-bold text-[#9AA4C7] uppercase tracking-[0.2em]">API Key (REDACTED)</label>
-                        <input type="password" defaultValue="AIzaSyAbbi3pIChhoXWcxYFTIomIIoIWbQIa3Qc" className="w-full bg-[#05060A]/80 border border-[#FF2D8F]/20 rounded-xl px-4 py-3 text-[#EAF0FF] focus:outline-none focus:border-[#FF4DA6] transition-all text-sm font-mono" />
-                        <p className="text-xs text-amber-400/80 flex items-center gap-1.5"><Shield size={12} /> Security: Move API key to a server-side proxy before deploying to production.</p>
-                    </div>
-                </div>
-            </div>
 
             {/* Notifications */}
             <div className="bg-[#0B0F1A]/80 border border-[#FF2D8F]/15 rounded-2xl p-6">
